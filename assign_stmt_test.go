@@ -27,6 +27,8 @@ func TestAssignStmt(t *testing.T) {
 		return true
 	})
 
+	// a, b := 10, input
+
 	// lhs
 	assert.Equal(t, "a", actuals[0].Lhs[0].(*ast.Ident).Name)
 	assert.Equal(t, "b", actuals[0].Lhs[1].(*ast.Ident).Name)
@@ -38,4 +40,16 @@ func TestAssignStmt(t *testing.T) {
 	assert.Equal(t, token.INT, actuals[0].Rhs[0].(*ast.BasicLit).Kind)
 	assert.Equal(t, "10", actuals[0].Rhs[0].(*ast.BasicLit).Value)
 	assert.Equal(t, "input", actuals[0].Rhs[1].(*ast.Ident).Name)
+
+	// c, d = a, b
+	// lhs
+	assert.Equal(t, "c", actuals[1].Lhs[0].(*ast.Ident).Name)
+	assert.Equal(t, "d", actuals[1].Lhs[1].(*ast.Ident).Name)
+
+	// token
+	assert.Equal(t, token.ASSIGN, actuals[1].Tok)
+
+	// rhs
+	assert.Equal(t, "a", actuals[1].Rhs[0].(*ast.Ident).Name)
+	assert.Equal(t, "b", actuals[1].Rhs[1].(*ast.Ident).Name)
 }

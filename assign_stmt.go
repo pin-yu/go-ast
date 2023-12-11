@@ -6,5 +6,10 @@ func AssignStmt(input int) (int, int) {
 	// - Token
 	// - Rhs
 	a, b := 10, input
-	return a, b
+
+	var c int
+	var d int
+	c, d = a, b
+
+	return c, d
 }
